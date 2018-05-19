@@ -1,0 +1,83 @@
+package Interfaz;
+
+import courier.Autoservicio;
+import courier.Cliente;
+import courier.Ficha;
+import courier.sendtext;
+import courier.*;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Maria Jose M.
+ */
+public class PaginaPrincipal extends javax.swing.JFrame {
+
+    Autoservicio Usuario;
+    Cliente cliente;
+    Autoservicio estadisticas = new Autoservicio();
+    Administracion datosAdmi = new Administracion();
+    private List<JButton> ventanillas;
+    private int indice;
+    private int cantidadVentanillas;
+    String tipoVentanilla;
+    /**
+     * Creates new form PaginaPrincipal
+     * @param pCantidadVentanillas
+     * @param interfaz recibe la informacion de la Pagina Inical
+     * @param ventanilla Recibe informacion de autoservicio
+     */
+    //constructor encargado de crear las ventanillas
+    public PaginaPrincipal(int pCantidadVentanillas, String ptipoVentanilla) {
+        initComponents();
+        ventanillas=new ArrayList<>();
+        cantidadVentanillas=pCantidadVentanillas;
+        tipoVentanilla = ptipoVentanilla;
+        indice=0;
+        agregarVentanillas();
+        
+    }
+    
+    private PaginaPrincipal() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void setCantidadVentanillas(int pCantidadVentanillas){
+        cantidadVentanillas=pCantidadVentanillas;
+    }
+    
+    public void agregarVentanillas(){
+        for (int i=0;i<cantidadVentanillas;i++)
+            crearVentanilla();
+    }
+    
+    public void crearVentanilla(){
+        JButton boton = new JButton("tipoVentanilla"+(indice+1));
+        jPanel2.add(boton);
+        ventanillas.add(boton);
+        indice++;
+        jPanel2.updateUI();
+    }
+        
+        private void btnCrearVentanillaActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+        // TODO add your handling code here:
+        JButton boton = new JButton("tipoVentanilla"+(indice+1));
+        jPanel2.add(boton);
+        ventanillas.add(boton);
+        indice++;
+        jPanel2.updateUI();//Actualiza la GUI
+    }                                                  
+
+    private void btnCerrarVentanaActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        // TODO add your handling code here:
+        jPanel2.remove(indice-1);
+        ventanillas.remove(indice-1);
+        indice--;
+        jPanel2.updateUI();
+        
+        
+    } 
