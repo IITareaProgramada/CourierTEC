@@ -1,0 +1,10 @@
+  String celular_persona = "+506" + jtxtTelefono.getText();
+           String celular_establecido = "+17327332852";
+        
+        
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        Message message = Message.creator(
+                new PhoneNumber(celular_persona),
+                new PhoneNumber(celular_establecido),
+                "Buenas "+ nombre + "su ficha es " + tiquete).create();
+        System.out.println(message.getSid());
