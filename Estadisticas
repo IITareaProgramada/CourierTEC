@@ -1,0 +1,39 @@
+  // PARA GENERAR INFO DE ESTADISTICAS
+        
+        // para definir que tipo de estructira usan las ventanillas de entrega
+        if (jRadioButtonHeapEntrega.isSelected()){
+            TipoEstructuraP = "HEAP";
+            TipoEstructuraNP = "HEAP";
+        }
+        else if (jRadioButtonColaEntrega.isSelected()){
+             TipoEstructuraP = "Cola de Prioridad";
+            TipoEstructuraNP = "Cola de Prioridad";
+        }
+        //para definir que tipo de estructura usan las  ventanillas de seguridad
+        if (jRadioButtonHeapSeguridad.isSelected()){
+            TipoEstructuraSeguridad = "HEAP";
+        }
+        else if (jRadioButtonColaSeguridad.isSelected()){
+             TipoEstructuraSeguridad = "Cola de Prioridad";
+        }
+
+        //para definir la cantidad de ventanillas por tipo de entrega
+        TotalPerecedera =  jtCantidadPerecederos.getText();
+        TotalNoPerecedero =  jtCantidadPerecederos.getText();
+        
+        PaginaPrincipal miventanilla = new PaginaPrincipal(Integer.parseInt(jtCantidadPerecederos.getText()), Integer.parseInt(jtCantidadNP.getText()));
+        miventanilla.setVisible(true);
+        
+
+        estadisticas.datosAdministracion(TipoEstructuraP, TipoEstructuraNP, TipoEstructuraSeguridad, TotalPerecedera, TotalNoPerecedero);
+
+        
+        this.setVisible(false);
+                JOptionPane.showMessageDialog(new JFrame(),"El TOTAL de ventanillas es de: " + TotalPerecedera + "\n"
+                +"El tipo de estructura es " +TipoEstructuraP+ "\n"
+                + "El tipo de estructura de seguridad es:" +TipoEstructuraSeguridad, "Datos de Productos Perecederos",JOptionPane.INFORMATION_MESSAGE);
+                
+                JOptionPane.showMessageDialog(new JFrame(),"El TOTAL de ventanilas es de: " + TotalNoPerecedero + "\n"
+               + "El tipo de estructura es " +TipoEstructuraNP + "\n"
+                + "El tipo de estructura de seguridad es: " +TipoEstructuraSeguridad, "Datos de Productos NO Perecederos",JOptionPane.INFORMATION_MESSAGE);
+   
