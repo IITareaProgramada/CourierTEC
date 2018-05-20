@@ -1,0 +1,139 @@
+   //informacion del comprador
+        
+        String nombre;
+        String correo;
+        int telefono;
+        nombre = this.jtxtNombre.getText();
+        correo = this.jtxtCorreo.getText();
+        telefono = Integer.parseInt (this.jtxtTelefono.getText());
+        String  TotalVP = (this.jTextFieldNuevaVentaEntrega.getText());
+        String  TotalVS = (this.jTextFieldNuevaVentaSeguridad.getText());
+        //variables de tipo de datos
+        String TipoPaquete= "";
+        String TipoUsuario = "";
+        
+
+        if (nombre.equals("") || correo.equals ("")){
+             JOptionPane.showMessageDialog(new JFrame(), "Favor ingresar los datos correspondientes", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+                // TIPO de paquete
+           String Paquete = (String) this.jComboBoxTipoPaquete.getSelectedItem();
+           if (Paquete.equals("Perecedero")){
+               TipoPaquete = "P";               
+               numero =  numero; 
+               
+           }
+           else if (Paquete.equals("No Perecedero")){
+               TipoPaquete = "NP";          
+              numero =  numero;
+           }
+           numero ++;
+
+           //TIPO  de usuario
+           String Usuario = (String) this.jComboBoxTipoUsuario.getSelectedItem();
+           if (Usuario.equals("Discapacitado")){
+               TipoUsuario = "D";
+           }
+           else if (Usuario.equals("Adulto Mayor")){
+               TipoUsuario = "M";  
+           }
+           else if (Usuario.equals("Embarazada")){
+               TipoUsuario = "E";
+           }
+           else if (Usuario.equals("Regular")){
+               TipoUsuario = "R";
+           }
+        
+       
+            //tiquete correspondiene
+            tiquete = TipoPaquete+"-"+TipoUsuario+"-"+numero;
+            jblTiquete.setText(tiquete);
+            
+            System.out.println(nombre+" "+ correo+ " " + TipoPaquete + " " + TipoUsuario);
+             JOptionPane.showMessageDialog(null, "BIENVENIDO  " + nombre +"\n" +"Su tiquete es: "+ tiquete);
+             
+              //validacion para la parte de administracion para saber cuantos clientes se encuentran en P o NP
+            if (Paquete.equals("Perecedero")){
+                   jComboBoxUsuariosP.addItem(tiquete);           
+               }
+            else if (Paquete.equals("No Perecedero")){
+                  jComboBoxUsuariosNP.addItem(tiquete);
+               }
+
+             
+           // agregar el objeto como una ficha y este a su vez lo va a agregar a la cola
+           Cliente obj = new Cliente (nombre, correo, TipoPaquete, TipoUsuario);
+           Ficha tiquete = new Ficha (numero , obj);
+           tiquete.generarFichaCliente();
+           tiquete.ingresarColaGeneral();
+           estadisticas.autoservicio(TipoPaquete, TipoUsuario);
+           jTextAreaInfoPerecederos2.setText(estadisticas.TotalP()+"\n" +
+                   "La cantidad de ventanillas" +"\n" 
+                   +"para entrega se ha cambiado a: " + TotalVP +"\n" 
+                   +"La cantidad de ventanillas" +"\n" 
+                   +"para seguridad se ha cambiado a: " + TotalVS +"\n" );
+           //datos no perecederos
+           jTextAreaInfoNOPerecederos2.setText(estadisticas.TotalNP()+"\n" +
+                   "La cantidad de ventanillas" +"\n" 
+                   +"para entrega se ha cambiado a: " + TotalVP +"\n" 
+                   +"La cantidad de ventanillas" +"\n" 
+                   +"para seguridad se ha cambiado a: " + TotalVS +"\n");
+           //agregar los metodos para los datos faltantes +"\n"+ variable.metodo()
+           jTextAreaInfoEstadisticas.setText (estadisticas.totales());
+           
+           //enviar mensaje de confirmacion 
+           // se supone que funciona
+           //sendtext mensaje = new sendtext (TipoPaquete, TipoUsuario, numero ,telefono );
+           
+     
+        }        
+        //inicializar los campos de texto vacios
+        this.jtxtNombre.setText("");
+        this.jtxtCorreo.setText("");
+        this.jtxtTelefono.setText("");
+        
+         
+    }                                        
+
+    
+    private void jTextAreaInfoEstadisticasAncestorAdded(javax.swing.event.AncestorEvent evt) {                                                        
+        // TODO add your handling code here:
+        
+    }                                                       
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+       String  TotalVP = (this.jTextFieldNuevaVentaEntrega.getText());
+        String  TotalVS = (this.jTextFieldNuevaVentaSeguridad.getText());
+        
+        jTextAreaInfoPerecederos2.setText(estadisticas.TotalP()+"\n" +
+                   "La cantidad de ventanillas" +"\n" 
+                   +"para entrega se ha cambiado a: " + TotalVP +"\n" 
+                   +"La cantidad de ventanillas" +"\n" 
+                   +"para seguridad se ha cambiado a: " + TotalVS +"\n" );
+           //datos no perecederos
+           jTextAreaInfoNOPerecederos2.setText(estadisticas.TotalNP()+"\n" +
+                   "La cantidad de ventanillas" +"\n" 
+                   +"para entrega se ha cambiado a: " + TotalVP +"\n" 
+                   +"La cantidad de ventanillas" +"\n" 
+                   +"para seguridad se ha cambiado a: " + TotalVS +"\n");
+    }                                        
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+       String  TotalVP = (this.jTextFieldNuevaVentaEntrega.getText());
+        String  TotalVS = (this.jTextFieldNuevaVentaSeguridad.getText());
+        
+        jTextAreaInfoPerecederos2.setText(estadisticas.TotalP()+"\n" +
+                   "La cantidad de ventanillas" +"\n" 
+                   +"para entrega se ha cambiado a: " + TotalVP +"\n" 
+                   +"La cantidad de ventanillas" +"\n" 
+                   +"para seguridad se ha cambiado a: " + TotalVS +"\n" );
+           //datos no perecederos
+           jTextAreaInfoNOPerecederos2.setText(estadisticas.TotalNP()+"\n" +
+                   "La cantidad de ventanillas" +"\n" 
+                   +"para entrega se ha cambiado a: " + TotalVP +"\n" 
+                   +"La cantidad de ventanillas" +"\n" 
+                   +"para seguridad se ha cambiado a: " + TotalVS +"\n");
+    }                                        
